@@ -98,46 +98,79 @@ async function imageInputToInlineData(input) {
 
 function buildPrompt() {
   return `
-YOU ARE PERFORMING A PROFESSIONAL FASHION VIRTUAL TRY-ON.
+YOU ARE A PROFESSIONAL AI VIRTUAL TRY-ON SYSTEM FOR FASHION STORES.
 
 IMAGE 1 = CUSTOMER PHOTO.
-This is the ONLY person who must appear in the final image.
+This image contains the real customer/person who must appear in the final result.
 
 IMAGE 2 = GARMENT REFERENCE PHOTO.
-This image is used ONLY to study and extract the garment/clothing item.
-IMAGE 2 may contain another model, mannequin, hanger, boutique background, catalog pose or product photo.
+This image contains the garment/clothing item that must be studied, understood, extracted and transferred.
+IMAGE 2 may contain another model, mannequin, hanger, catalog background, boutique background or product photo.
 
-MAIN GOAL:
-Create one realistic, premium, full-body virtual try-on image where the PERSON FROM IMAGE 1 is wearing the EXACT GARMENT FROM IMAGE 2.
+MAIN OBJECTIVE:
+Create ONE NEW final image in a clean premium studio/boutique environment.
+The final image must show the CUSTOMER FROM IMAGE 1 wearing the EXACT GARMENT FROM IMAGE 2.
 
-BEFORE GENERATING, INTERNALLY ANALYZE BOTH IMAGES CAREFULLY:
+VERY IMPORTANT:
+Do NOT place the garment model from IMAGE 2 on top of IMAGE 1.
+Do NOT paste IMAGE 2 over IMAGE 1.
+Do NOT use the original background from IMAGE 1.
+Do NOT use the original background from IMAGE 2.
+Do NOT make a collage.
+Do NOT create two people.
+Do NOT keep the model from IMAGE 2.
+Create a completely NEW polished final image in a clean studio setting.
+
+FIRST, INTERNALLY ANALYZE BOTH IMAGES BEFORE GENERATING:
 
 STEP 1 — ANALYZE IMAGE 1, THE CUSTOMER:
-- Identify the customer's face.
-- Identify the customer's hair.
-- Identify the customer's skin tone.
-- Identify the customer's body proportions.
-- Identify the customer's pose.
-- Identify the customer's visible arms, hands, shoulders, legs and feet.
-- Identify the original clothing only so it can be replaced.
-- Preserve the customer as the final person.
-- The final image must show the person from IMAGE 1, not the model from IMAGE 2.
+- Understand the customer's face.
+- Understand the customer's hair.
+- Understand the customer's skin tone.
+- Understand the customer's natural body proportions.
+- Understand the customer's pose and body direction.
+- Understand the visible arms, hands, shoulders, legs and feet.
+- Understand the original clothing only so it can be replaced.
+- The final person must be this customer.
+- Preserve the customer identity as much as possible.
 
 STEP 2 — ANALYZE IMAGE 2, THE GARMENT:
-- Study only the garment/clothing item.
-- Ignore the model wearing it.
-- Ignore the model's face.
-- Ignore the model's hair.
-- Ignore the model's skin.
-- Ignore the model's body.
-- Ignore the model's pose.
-- Ignore the model's hands, arms, legs and feet.
-- Ignore the model's shoes unless the shoes are clearly part of the desired styling.
-- Ignore the background.
-- Extract only the clothing item.
+- Study the garment carefully.
+- Identify the garment category.
+- Identify the exact color.
+- Identify the exact neckline.
+- Identify the exact bodice.
+- Identify straps, sleeves, off-shoulder, one-shoulder or strapless design.
+- Identify the waistline.
+- Identify the skirt shape.
+- Identify the skirt length.
+- Identify volume, train, hemline and drape.
+- Identify fabric: satin, lace, tulle, chiffon, mikado, organza, crepe or other.
+- Identify details: embroidery, appliqué, pearls, sequins, stones, beading, transparency, folds, pleats and seams.
+- Learn the garment design completely before transferring it.
 
-STEP 3 — UNDERSTAND THE GARMENT TYPE:
-The garment may be:
+STEP 3 — IGNORE NON-GARMENT PARTS OF IMAGE 2:
+- Ignore the model in IMAGE 2.
+- Ignore IMAGE 2 face.
+- Ignore IMAGE 2 hair.
+- Ignore IMAGE 2 head.
+- Ignore IMAGE 2 skin.
+- Ignore IMAGE 2 body.
+- Ignore IMAGE 2 pose.
+- Ignore IMAGE 2 arms.
+- Ignore IMAGE 2 legs.
+- Ignore IMAGE 2 background.
+- Extract ONLY the garment design from IMAGE 2.
+
+STEP 4 — CREATE A NEW STUDIO RESULT:
+- Do not reuse the original composition from IMAGE 1.
+- Do not reuse the original composition from IMAGE 2.
+- Create a new clean vertical full-body fashion studio image.
+- Use a premium boutique/studio background.
+- The background should look elegant, neutral and professional.
+- The result should look like a professional fashion try-on photo.
+
+GARMENT MAY BE:
 - wedding dress
 - bridal gown
 - abiye
@@ -147,10 +180,9 @@ The garment may be:
 - bridesmaid dress
 - formal dress
 - luxury fashion dress
-- colored gown
 - white gown
-- black dress
 - green dress
+- black dress
 - red dress
 - blue dress
 - champagne dress
@@ -161,23 +193,10 @@ The garment may be:
 
 DO NOT ASSUME THE GARMENT IS BRIDAL.
 DO NOT ASSUME THE GARMENT IS WHITE.
-DO NOT TURN A COLORED DRESS INTO A WHITE WEDDING DRESS.
-DO NOT TURN AN EVENING DRESS INTO A BRIDAL DRESS.
+DO NOT TURN A COLORED DRESS INTO A WHITE DRESS.
 DO NOT TURN AN ABIYE INTO A GELINLIK.
-DO NOT MAKE THE GARMENT MORE BRIDAL UNLESS IMAGE 2 IS CLEARLY A BRIDAL GOWN.
-
-STEP 4 — TRANSFER ONLY THE GARMENT:
-- Remove/replace the original clothing from IMAGE 1.
-- Put only the garment from IMAGE 2 onto the body of the person from IMAGE 1.
-- Do not copy the person from IMAGE 2.
-- Do not copy the face from IMAGE 2.
-- Do not copy the head from IMAGE 2.
-- Do not copy the hair from IMAGE 2.
-- Do not copy the body from IMAGE 2.
-- Do not copy the arms or pose from IMAGE 2.
-- Do not place the IMAGE 2 model in front of the IMAGE 1 person.
-- Do not create two people.
-- The final image must contain only one person: the customer from IMAGE 1.
+DO NOT TURN AN EVENING GOWN INTO A BRIDAL GOWN.
+Only make it bridal if IMAGE 2 is clearly bridal.
 
 ABSOLUTE GARMENT FIDELITY RULES:
 - Preserve the exact garment from IMAGE 2.
@@ -186,147 +205,145 @@ ABSOLUTE GARMENT FIDELITY RULES:
 - Preserve the exact neckline.
 - Preserve the exact bodice structure.
 - Preserve the exact bust shape.
-- Preserve straps, sleeves, off-shoulder details, one-shoulder details or strapless design exactly.
-- Preserve the waistline.
-- Preserve corset details if present.
-- Preserve draping, pleats, folds and seams.
-- Preserve fabric type and visible texture.
-- Preserve satin shine if satin.
-- Preserve lace if lace.
-- Preserve tulle layers if tulle.
-- Preserve chiffon softness if chiffon.
-- Preserve organza, mikado, crepe, embroidery, appliqué, pearls, sequins, stones, beading and transparency if present.
-- Preserve skirt shape.
-- Preserve skirt volume.
-- Preserve hemline.
-- Preserve length.
-- Preserve train only if the garment has a train.
-- If the garment has no train, do not invent a train.
-- Never change the garment color.
-- Never simplify the garment.
-- Never invent new decoration.
-- Never remove major garment details.
-- Never create a different dress.
+- Preserve the exact straps, sleeves, shoulder shape or strapless design.
+- Preserve the exact waistline.
+- Preserve the exact skirt shape.
+- Preserve the exact skirt volume.
+- Preserve the exact length.
+- Preserve the exact hemline.
+- Preserve train only if it exists.
+- Preserve fabric texture and shine.
+- Preserve lace, satin, tulle, chiffon, embroidery, beading, stones, sequins, pearls, transparency, appliqué, folds and seams if present.
+- Do not simplify the garment.
+- Do not redesign the garment.
+- Do not recolor the garment.
+- Do not invent new details.
+- Do not remove major details.
+- Do not create a different dress.
 
 COLOR RULES:
-- If IMAGE 2 garment is green, final garment must be green.
-- If IMAGE 2 garment is black, final garment must be black.
-- If IMAGE 2 garment is red, final garment must be red.
-- If IMAGE 2 garment is blue, final garment must be blue.
-- If IMAGE 2 garment is champagne, final garment must be champagne.
-- If IMAGE 2 garment is white, final garment must be white.
-- If IMAGE 2 garment has multiple colors, preserve the same color placement.
-- Never recolor the garment.
-- Never make the garment white unless it is already white in IMAGE 2.
+- If the garment is green, it must remain green.
+- If the garment is black, it must remain black.
+- If the garment is red, it must remain red.
+- If the garment is blue, it must remain blue.
+- If the garment is champagne, it must remain champagne.
+- If the garment is white, it must remain white.
+- If the garment has multiple colors, preserve the same color placement.
+- Never make the garment white unless it is already white.
+- Never change color to make it look more bridal.
 
-BRIDAL / WEDDING DRESS RULES:
-- If IMAGE 2 is clearly a bridal gown or wedding dress, preserve it exactly.
-- Preserve bridal lace, train, veil-like details, corset, bodice, neckline, skirt volume and fabric.
-- Do not redesign the bridal gown.
-- Do not replace it with another bridal gown.
-- Do not make it simpler or more generic.
+TRAIN AND LENGTH RULES:
+- If the garment has a long train, show the full train.
+- If the garment has a short train, preserve the short train.
+- If the garment has no train, do not invent one.
+- If it is floor-length, keep it floor-length.
+- If it is midi, keep it midi.
+- If it is short, keep it short.
+- Show the full garment clearly.
+- Do not crop the hem.
+- Do not hide the bottom of the dress.
 
-ABIYE / EVENING DRESS RULES:
-- If IMAGE 2 is an abiye, evening gown, party dress or prom dress, preserve it exactly as eveningwear.
-- Do not make it bridal.
-- Do not add bridal lace.
-- Do not add a bridal train.
-- Do not turn it into a white gown.
-- Keep the original eveningwear identity, color and mood.
-
-PERSON PRESERVATION RULES:
-- Preserve the person from IMAGE 1.
+CUSTOMER IDENTITY RULES:
+- Use only the customer from IMAGE 1.
 - Preserve IMAGE 1 face.
 - Preserve IMAGE 1 hair.
 - Preserve IMAGE 1 skin tone.
-- Preserve IMAGE 1 expression.
+- Preserve IMAGE 1 expression as much as possible.
 - Preserve IMAGE 1 natural body proportions.
-- Preserve IMAGE 1 identity and recognizability.
-- Do not replace the customer with a different model.
-- Do not use IMAGE 2 model's face.
-- Do not use IMAGE 2 model's body.
+- Preserve recognizability.
+- Do not use the model from IMAGE 2.
+- Do not copy IMAGE 2 face.
+- Do not copy IMAGE 2 body.
+- Do not copy IMAGE 2 head or hair.
+- Do not replace the customer with another model.
+- Do not create a new face.
 - Do not change ethnicity.
 - Do not change age.
 - Do not make the customer unrealistically thinner or larger.
-- Do not heavily reshape the customer.
+
+GARMENT TRANSFER RULES:
+- Remove the original clothing from IMAGE 1.
+- Dress the customer from IMAGE 1 with the garment from IMAGE 2.
+- Adapt the garment naturally to the customer's body.
+- Keep the customer as the only person.
+- Do not place the IMAGE 2 model in front of the customer.
+- Do not layer the full IMAGE 2 photo over the customer.
+- Do not create a duplicate person.
+- Do not show IMAGE 2 model anywhere in the final result.
 
 FIT AND REALISM RULES:
-- Fit the garment naturally onto the customer from IMAGE 1.
-- Adapt the garment to the customer's pose without changing the garment design.
-- Make the fabric follow the body realistically.
-- Make the fabric follow gravity.
-- Add natural folds, shadows and highlights.
-- Match lighting between body and garment.
-- Make it look like the customer is truly wearing the garment.
+- Make the garment look actually worn by the customer.
+- Fabric should follow gravity.
+- Fabric should follow the body naturally.
+- Add realistic shadows.
+- Add realistic folds.
+- Match lighting on body and garment.
 - Keep shoulders, bust, waist, hips and skirt placement realistic.
 - Avoid pasted-on appearance.
-- Avoid mannequin-like stiffness.
 - Avoid melted fabric.
-- Avoid distorted lace or broken patterns.
+- Avoid broken lace.
 - Avoid broken seams.
-- Avoid strange body deformation.
-- Avoid extra arms, extra legs, extra fingers or missing limbs.
-- Avoid two heads, two faces or double bodies.
-- Avoid keeping the old clothing visible.
+- Avoid distorted hands, arms, legs, feet, neck or face.
+- Avoid extra fingers.
+- Avoid missing limbs.
+- Avoid two heads.
+- Avoid double bodies.
+- Avoid mannequin-like stiffness.
 
-COMPOSITION RULES:
-- Output one final image only.
-- Vertical full-body image.
-- Show the customer from head to toe.
-- Show the entire garment clearly.
-- Use a clean, elegant, premium boutique, showroom or fashion studio background.
-- Background should be neutral and not distract from the garment.
-- Do not add text.
-- Do not add logos.
-- Do not add watermark.
-- Do not add price tags.
-- Do not add extra people.
-- Do not create a before/after collage.
-- Do not show IMAGE 2 model anywhere.
+FINAL COMPOSITION:
+- Create one new final studio image.
+- Vertical full-body format.
+- Show customer from head to toe.
+- Show the full garment.
+- Premium boutique or fashion studio background.
+- Clean neutral background.
+- Elegant commercial lighting.
+- Professional fashion-store quality.
+- No text.
+- No logo.
+- No watermark.
+- No price tag.
+- No extra people.
+- No before/after layout.
+- No collage.
 
-QUALITY RULES:
+QUALITY TARGET:
 - High realism.
-- Premium fashion editorial quality.
-- Commercial boutique quality.
-- Suitable for bridal stores, evening dress stores, abiye stores, boutiques and partner retailers.
-- Clear garment details.
+- Premium editorial fashion quality.
 - Clean lighting.
-- Elegant pose.
 - Natural anatomy.
-- Realistic fabric behavior.
-- Professional result.
+- Sharp garment details.
+- Elegant boutique presentation.
+- Suitable for bridal stores, abiye stores, evening dress stores and fashion retailers.
 
 NEGATIVE INSTRUCTIONS:
 - Do not copy the model from IMAGE 2.
-- Do not paste the IMAGE 2 model onto IMAGE 1.
-- Do not keep the IMAGE 2 head, face or body.
-- Do not create two people.
-- Do not hide the customer behind the garment model.
-- Do not make the person from IMAGE 2 appear in the final result.
-- Do not change the garment into a white bridal gown unless it is already white.
-- Do not redesign.
-- Do not recolor.
+- Do not paste IMAGE 2 onto IMAGE 1.
+- Do not keep IMAGE 2 background.
+- Do not keep IMAGE 1 background.
+- Do not create the result on top of the original photos.
+- Do not show the customer standing behind another person.
+- Do not show two people.
+- Do not use the wrong face.
+- Do not use the wrong body.
+- Do not change the dress color.
+- Do not make a colored dress white.
+- Do not redesign the garment.
 - Do not invent a new dress.
-- Do not ignore the garment reference.
-- Do not ignore the customer identity.
 
-FINAL PRIORITIES, IN EXACT ORDER:
-1. Use only the person from IMAGE 1 in the final image.
-2. Analyze IMAGE 2 and extract only the garment.
-3. Preserve the exact garment color.
-4. Preserve the exact garment silhouette, neckline, fabric and details.
-5. Fit the garment realistically onto the person from IMAGE 1.
-6. Do not copy the model/person from IMAGE 2.
+FINAL PRIORITIES IN ORDER:
+1. Create a NEW clean studio/boutique final image.
+2. Use only the customer from IMAGE 1 as the person.
+3. Analyze IMAGE 2 and extract only the garment.
+4. Preserve the exact garment color, silhouette, neckline, fabric and details.
+5. Fit the garment realistically onto the customer from IMAGE 1.
+6. Do not copy IMAGE 2 model.
 7. Do not create two people.
-8. Do not redesign, recolor or convert the garment.
+8. Do not paste one photo over another.
+9. Do not reuse the original backgrounds.
+10. Output only the final polished try-on image.
 
-If there is uncertainty, prioritize:
-- customer identity from IMAGE 1
-- garment-only extraction from IMAGE 2
-- exact color and shape preservation
-- realistic try-on
-
-The final result must show the IMAGE 1 customer wearing the IMAGE 2 garment.
+The final result must look like a new professional studio photo of the IMAGE 1 customer wearing the IMAGE 2 garment.
 `;
 }
 
