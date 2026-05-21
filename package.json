@@ -1,13 +1,12 @@
 {
   "name": "cibella-bridal-server",
   "version": "1.0.0",
-  "description": "Cibella Noivas Gemini bridal virtual try-on backend",
+  "description": "Cibella virtual try-on backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "engines": {
     "node": ">=20"
-  },
-  "dependencies": {}
+  }
 }
