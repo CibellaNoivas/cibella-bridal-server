@@ -111,17 +111,21 @@ MAIN OBJECTIVE:
 Create ONE NEW final image in a clean premium studio/boutique environment.
 The final image must show the CUSTOMER FROM IMAGE 1 wearing the EXACT GARMENT FROM IMAGE 2.
 
-VERY IMPORTANT:
-Do NOT place the garment model from IMAGE 2 on top of IMAGE 1.
-Do NOT paste IMAGE 2 over IMAGE 1.
-Do NOT use the original background from IMAGE 1.
-Do NOT use the original background from IMAGE 2.
-Do NOT make a collage.
-Do NOT create two people.
-Do NOT keep the model from IMAGE 2.
-Create a completely NEW polished final image in a clean studio setting.
+CRITICAL CLOTHING REPLACEMENT RULE:
+The original clothing worn by the customer in IMAGE 1 must be COMPLETELY REMOVED and REPLACED by the garment from IMAGE 2.
+Do NOT keep the original top, pants, skirt, dress, sleeves, neckline, waistband, straps, shoes or any visible clothing from IMAGE 1.
+The final outfit must be ONLY the garment from IMAGE 2.
+No part of the original outfit from IMAGE 1 should remain visible.
 
-FIRST, INTERNALLY ANALYZE BOTH IMAGES BEFORE GENERATING:
+VERY IMPORTANT:
+Do NOT place the garment on top of the customer's existing clothes.
+Do NOT layer the garment over the original outfit.
+Do NOT leave the customer's original white top, pants, blouse, dress or waistband visible.
+Do NOT combine IMAGE 1 clothing with IMAGE 2 garment.
+Do NOT paste IMAGE 2 over IMAGE 1.
+Do NOT use the model from IMAGE 2.
+Do NOT create two people.
+Create a completely NEW polished final image in a clean studio setting.
 
 STEP 1 — ANALYZE IMAGE 1, THE CUSTOMER:
 - Understand the customer's face.
@@ -129,9 +133,9 @@ STEP 1 — ANALYZE IMAGE 1, THE CUSTOMER:
 - Understand the customer's skin tone.
 - Understand the customer's natural body proportions.
 - Understand the customer's pose and body direction.
-- Understand the visible arms, hands, shoulders, legs and feet.
-- Understand the original clothing only so it can be replaced.
-- The final person must be this customer.
+- Understand visible arms, hands, shoulders, legs and feet.
+- Identify the original clothing ONLY so it can be removed.
+- The final person must be the customer from IMAGE 1.
 - Preserve the customer identity as much as possible.
 
 STEP 2 — ANALYZE IMAGE 2, THE GARMENT:
@@ -162,7 +166,15 @@ STEP 3 — IGNORE NON-GARMENT PARTS OF IMAGE 2:
 - Ignore IMAGE 2 background.
 - Extract ONLY the garment design from IMAGE 2.
 
-STEP 4 — CREATE A NEW STUDIO RESULT:
+STEP 4 — REMOVE CUSTOMER'S OLD CLOTHING:
+Before fitting the new garment, remove the original clothing from IMAGE 1.
+The original clothing must not appear in the final result.
+If the customer in IMAGE 1 is wearing a white top and white pants, they must be fully replaced.
+If the customer in IMAGE 1 is wearing a blouse, shirt, jeans, skirt, dress, shorts or any other outfit, it must be fully replaced.
+Only the person's body, face, hair, skin and identity should remain from IMAGE 1.
+The new garment from IMAGE 2 must become the only visible outfit.
+
+STEP 5 — CREATE A NEW STUDIO RESULT:
 - Do not reuse the original composition from IMAGE 1.
 - Do not reuse the original composition from IMAGE 2.
 - Create a new clean vertical full-body fashion studio image.
@@ -262,8 +274,13 @@ CUSTOMER IDENTITY RULES:
 - Do not make the customer unrealistically thinner or larger.
 
 GARMENT TRANSFER RULES:
-- Remove the original clothing from IMAGE 1.
-- Dress the customer from IMAGE 1 with the garment from IMAGE 2.
+- The final image must show the customer from IMAGE 1 wearing only the garment from IMAGE 2.
+- The old clothing from IMAGE 1 must be invisible.
+- The original white top, pants, blouse, waistband or dress from IMAGE 1 must not remain.
+- The new garment must cover the customer naturally according to its design.
+- A strapless dress must show the shoulders and upper chest naturally, without the old top underneath.
+- A long gown must replace pants completely.
+- A full dress must replace all original clothing.
 - Adapt the garment naturally to the customer's body.
 - Keep the customer as the only person.
 - Do not place the IMAGE 2 model in front of the customer.
@@ -317,6 +334,11 @@ QUALITY TARGET:
 - Suitable for bridal stores, abiye stores, evening dress stores and fashion retailers.
 
 NEGATIVE INSTRUCTIONS:
+- Do not keep the customer's original clothes.
+- Do not leave the white top visible.
+- Do not leave the white pants visible.
+- Do not leave original blouse, shirt, jeans, skirt, dress, waistband or straps visible.
+- Do not put the new dress over the old clothes.
 - Do not copy the model from IMAGE 2.
 - Do not paste IMAGE 2 onto IMAGE 1.
 - Do not keep IMAGE 2 background.
@@ -334,16 +356,17 @@ NEGATIVE INSTRUCTIONS:
 FINAL PRIORITIES IN ORDER:
 1. Create a NEW clean studio/boutique final image.
 2. Use only the customer from IMAGE 1 as the person.
-3. Analyze IMAGE 2 and extract only the garment.
-4. Preserve the exact garment color, silhouette, neckline, fabric and details.
-5. Fit the garment realistically onto the customer from IMAGE 1.
-6. Do not copy IMAGE 2 model.
-7. Do not create two people.
-8. Do not paste one photo over another.
-9. Do not reuse the original backgrounds.
-10. Output only the final polished try-on image.
+3. Completely remove the customer's original clothing from IMAGE 1.
+4. Analyze IMAGE 2 and extract only the garment.
+5. Preserve the exact garment color, silhouette, neckline, fabric and details.
+6. Fit the garment realistically onto the customer from IMAGE 1.
+7. Do not copy IMAGE 2 model.
+8. Do not create two people.
+9. Do not paste one photo over another.
+10. Do not reuse the original backgrounds.
+11. Output only the final polished try-on image.
 
-The final result must look like a new professional studio photo of the IMAGE 1 customer wearing the IMAGE 2 garment.
+The final result must look like a new professional studio photo of the IMAGE 1 customer wearing only the IMAGE 2 garment, with no original clothing visible.
 `;
 }
 
