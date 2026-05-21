@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = process.env.PORT || 8080;
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyAIYq1LYg2AVEuoQb1KDCuh1ein9c2-tAE";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-image";
 
 const RESULTS_DIR = path.join(__dirname, "results");
@@ -25,7 +25,6 @@ function sendJson(res, statusCode, data) {
 
 function getBaseUrl(req) {
   const host = req.headers.host || `127.0.0.1:${PORT}`;
-
   const protocol =
     host.includes("127.0.0.1") || host.includes("localhost")
       ? "http"
@@ -55,8 +54,8 @@ function readBody(req) {
 }
 
 async function imageInputToInlineData(input) {
-  if (!input) {
-    throw new Error("Fotoğraf boş");
+  if (!input || typeof input !== "string") {
+    throw new Error("Fotoğraf boş veya hatalı");
   }
 
   if (input.startsWith("data:image/")) {
@@ -253,7 +252,10 @@ async function generateGeminiBridal({ personImage, dressImage, baseUrl }) {
   return {
     ok: true,
     status: 200,
-    data: saved
+    data: {
+      ...saved,
+      image: "data:image/png;base64," + imageBase64
+    }
   };
 }
 
