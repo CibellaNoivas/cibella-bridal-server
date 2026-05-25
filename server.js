@@ -4,7 +4,7 @@ const path = require("path");
 
 const PORT = process.env.PORT || 8080;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-image";
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3-pro-image-preview";
 
 const RESULTS_DIR = path.join(__dirname, "results");
 
