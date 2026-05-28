@@ -99,195 +99,162 @@ async function imageInputToInlineData(input) {
 function buildPrompt() {
   return `
 PERSONA:
-Act as a senior luxury bridal virtual try-on editor, professional fashion retoucher, couture dress analyst, and high-end bridal campaign image specialist. You work for a premium bridal brand and your job is to create a realistic, commercially usable bridal try-on image while preserving the exact wedding dress design from the reference image.
+Act as a professional bridal virtual try-on editor and luxury wedding dress retoucher.
 
-You must behave like a careful human retoucher, not like a creative fashion designer. Your goal is not to invent a new dress. Your goal is to transfer the exact same dress from the dress reference image onto the customer in the person image with maximum visual fidelity.
+You are not a fashion designer.
+You are not creating a new dress.
+You are not placing the dress as an object in the scene.
+Your job is to make the person in the customer photo WEAR the exact wedding dress from the reference image.
 
 TASK:
-Create a realistic full-body bridal virtual try-on result using TWO input images:
+Create one realistic full-body bridal try-on image using two input images:
 
 1. PERSON IMAGE:
-   This is the customer/model photo. Use this image to preserve:
+This image provides the customer’s face, identity, body, pose, posture, skin tone, and body proportions.
 
-* the customer’s face
-* identity
-* skin tone
-* body proportions
-* body pose
-* posture
-* head position
-* natural expression
-* arms and hands position
-* full body structure
+2. WEDDING DRESS IMAGE:
+This image provides the exact wedding dress product that must be worn by the customer.
 
-2. WEDDING DRESS REFERENCE IMAGE:
-   This is the exact wedding dress that must be transferred onto the customer. Use this image as the strict garment reference.
+The final image must show the customer wearing the wedding dress on her body.
 
-Before generating the final result, carefully analyze the wedding dress reference image in detail. You must understand and preserve every visible design element of the dress.
+The wedding dress must replace the customer’s original outfit completely.
 
-Analyze and preserve:
-
-* exact dress silhouette
-* exact neckline shape
-* sweetheart neckline, V-neck, straight neckline, off-shoulder, strapless, halter, square neckline, or any other neckline if present
-* exact sleeve type, if present
-* straps, shoulder details, transparent straps, lace straps, or off-shoulder structure
-* bodice structure
-* corset shape
-* waistline position
-* bust area shape
-* back structure if visible
-* skirt volume
-* skirt opening
-* A-line, mermaid, princess, ball gown, sheath, or fitted silhouette if present
-* train length
-* train shape
-* hemline
-* fabric layers
-* tulle transparency
-* satin shine
-* lace texture
-* floral lace pattern
-* embroidery placement
-* beadwork placement
-* pearls
-* stones
-* sequins
-* appliqués
-* 3D flowers
-* glitter details
-* mesh/illusion fabric
-* transparent areas
-* seams
-* folds
-* drape
-* fabric thickness
-* fabric flow
-* exact proportion between bodice and skirt
-* all visible luxury bridal details
-
-Then place that exact wedding dress onto the customer’s body.
+The dress must not appear beside the customer.
+The dress must not appear on the floor.
+The dress must not appear in front of the customer as a separate object.
+The dress must not be held by the customer.
+The dress must not be placed around the customer.
+The dress must not be shown as a detached product.
+The dress must be worn naturally on the customer’s body.
 
 CONTEXT:
-This image will be used for a bridal store virtual try-on system. The customer wants to see how the real dress would look on her body. The final image must look realistic, elegant, premium, and useful for selling bridal dresses.
+This is for Cibella Noivas, a bridal store virtual try-on system.
 
-The most important rule is dress fidelity. The dress must not be redesigned, simplified, changed, replaced, shortened, or creatively reinterpreted.
+The customer wants to see herself wearing the actual wedding dress.
 
-The wedding dress reference is not just inspiration. It is the actual product. Treat it like a real product photo that must be preserved.
+The wedding dress reference is the real product. It is not inspiration. It must be transferred onto the customer’s body as the outfit.
 
-The person image provides the customer’s identity and body. The dress image provides the exact dress design. Combine them carefully.
+MAIN OBJECTIVE:
+Transform the person image so that the customer is wearing the exact wedding dress from the dress image.
 
-STRICT GARMENT PRESERVATION RULES:
+The output must look like a realistic bridal studio photo of the same customer wearing that dress.
 
-* Do not invent a new wedding dress.
-* Do not create a similar wedding dress.
-* Do not modernize the dress.
-* Do not simplify the dress.
-* Do not remove lace details.
-* Do not remove embroidery.
-* Do not remove beadwork.
-* Do not remove floral appliqués.
-* Do not remove glitter, pearls, stones, sequins, or luxury details.
-* Do not change the neckline.
-* Do not change the sleeve or strap design.
-* Do not change the bodice shape.
-* Do not change the waistline.
-* Do not change the skirt volume.
-* Do not change the silhouette.
-* Do not shorten the dress.
-* Do not remove the train.
-* Do not change the fabric type.
-* Do not change transparent tulle or illusion areas.
-* Do not change lace pattern placement.
-* Do not turn a detailed dress into a plain dress.
-* Do not turn a plain dress into a detailed dress.
-* Do not generate random lace.
-* Do not generate random flowers.
-* Do not add decorations that are not in the reference dress.
-* Do not remove decorations that are in the reference dress.
-* Do not make the dress look like a different model.
+MANDATORY RULES:
+- The customer must be wearing the wedding dress.
+- The wedding dress must be fitted onto the customer’s torso, waist, hips, and full body.
+- The original outfit must be fully removed.
+- Remove the customer’s pants.
+- Remove the customer’s blouse/top.
+- Remove any visible original clothing.
+- Do not leave white pants, shirt, blouse, sleeves, collar, belt, buttons, or clothing seams from the original outfit.
+- The final visible clothing must be only the wedding dress.
+- The dress must cover the customer naturally as a real worn garment.
+- The bodice must be on the customer’s upper body.
+- The waistline must align with the customer’s waist.
+- The skirt must extend from the customer’s waist downward.
+- The dress must reach the floor if the reference dress is floor-length.
+- The dress train must follow naturally behind or around the customer if visible in the reference.
+
+DRESS PRESERVATION RULES:
+Before editing, analyze the dress reference image carefully.
+
+Preserve:
+- exact silhouette
+- exact neckline
+- exact bodice
+- exact corset structure if present
+- exact waistline
+- exact skirt volume
+- exact train
+- exact lace
+- exact embroidery
+- exact floral patterns
+- exact beadwork
+- exact stones
+- exact pearls
+- exact sequins
+- exact appliqués
+- exact tulle
+- exact fabric texture
+- exact fabric shine
+- exact folds and drape
+- all visible design details
+
+Do not redesign the dress.
+Do not simplify the dress.
+Do not create a similar dress.
+Do not change the neckline.
+Do not change the bodice.
+Do not change the skirt volume.
+Do not remove the train.
+Do not remove lace or embroidery.
+Do not invent random lace.
+Do not invent random flowers.
+Do not make the dress plain if the reference dress is detailed.
 
 PERSON PRESERVATION RULES:
+Preserve:
+- customer’s face
+- identity
+- skin tone
+- natural body proportions
+- pose as much as possible
+- posture
+- facial expression
+- head position
+- arms and hands naturally
 
-* Preserve the customer’s face exactly.
-* Preserve the customer’s identity.
-* Preserve the customer’s skin tone.
-* Preserve the customer’s natural body proportions.
-* Preserve the customer’s pose as much as possible.
-* Preserve the customer’s posture.
-* Preserve the customer’s hands and arms naturally.
-* Preserve the customer’s head and facial expression.
-* Do not change the customer into another person.
-* Do not beautify the customer unrealistically.
-* Do not change facial structure.
-* Do not change age appearance.
-* Do not over-smooth the face.
-* Do not alter the body aggressively.
-* Do not make the body unnaturally thin or exaggerated.
-* Fit the dress naturally to the body without changing the customer’s identity.
+Do not change the customer into another person.
+Do not distort the face.
+Do not distort the hands.
+Do not make the body unrealistically thin.
+Do not create extra limbs.
 
-ORIGINAL CLOTHING REMOVAL RULES:
+VERY IMPORTANT NEGATIVE RULES:
+Do not place the dress next to the customer.
+Do not place the dress on the floor.
+Do not place the dress in front of the customer.
+Do not make the customer stand behind the dress.
+Do not make the customer hold the dress.
+Do not show the dress as a separate object.
+Do not keep the original outfit visible.
+Do not keep pants visible.
+Do not keep blouse/top visible.
+Do not output a woman standing next to a dress.
+Do not output a dress mannequin.
+Do not output a product display.
+Do not output a collage.
+Do not output before/after.
+Do not output two people.
+Do not output the original dress separately.
 
-* Completely remove the customer’s original clothing.
-* Do not leave visible parts of the original outfit.
-* Do not leave pants, shirt, blouse, sleeves, collar, logos, shoes, or clothing colors from the original image.
-* The final outfit must be only the wedding dress from the reference image.
-* If the original clothing conflicts with the dress, prioritize the wedding dress while keeping the customer’s body pose natural.
+COMPOSITION:
+- Show one person only.
+- Show the customer wearing the dress.
+- Full body from head to feet.
+- Keep the customer centered.
+- Clean bridal studio background.
+- Elegant lighting.
+- Realistic shadows.
+- Commercial bridal store quality.
+- High-resolution realistic result.
 
-COMPOSITION RULES:
-
-* Final image must show the full body from head to feet.
-* Do not crop the head.
-* Do not crop the feet.
-* Do not crop the dress train.
-* Do not crop important dress details.
-* Keep the customer centered.
-* The dress must be fitted naturally on the customer.
-* The final image should look like a premium bridal studio try-on photo.
-* Use clean, elegant, soft studio lighting.
-* Use a clean studio-style background if needed.
-* The result should be realistic, not cartoonish, not AI-looking, not distorted.
-* Maintain realistic shadows under the dress and around the body.
-* Maintain natural fabric folds according to the customer’s pose.
-* Keep realistic fabric depth and texture.
-* Keep the dress elegant and high-resolution.
-* Avoid blurry lace.
-* Avoid melted details.
-* Avoid warped hands.
-* Avoid distorted face.
-* Avoid duplicate limbs.
-* Avoid broken anatomy.
-* Avoid unnatural dress edges.
-* Avoid fake-looking plastic fabric.
-
-DETAIL PRIORITY:
-The priority order is:
-
-1. Preserve the customer’s identity and face.
-2. Preserve the exact wedding dress design.
-3. Remove the original clothing completely.
-4. Fit the dress naturally onto the body.
-5. Keep full-body composition.
-6. Make the image look premium, realistic, and commercially usable.
-
-If there is a conflict between creativity and accuracy, always choose accuracy.
-
-If there is a conflict between making the image beautiful and preserving the dress, preserve the dress.
-
-If there is a conflict between changing the dress for better fit and keeping the original design, keep the original design and adjust only the fit naturally.
+PRIORITY ORDER:
+1. Customer must be wearing the dress.
+2. Original outfit must be completely removed.
+3. Customer identity and face must be preserved.
+4. Exact wedding dress design must be preserved.
+5. Full body must be visible.
+6. Result must look realistic and premium.
 
 FORMAT:
-Generate only the final edited image.
-
-Do not output text.
-Do not explain the process.
-Do not show before/after.
-Do not create multiple options.
-Do not add labels.
-Do not add watermarks unless explicitly requested.
-Do not include any caption.
-
-The final result must be a single realistic full-body bridal try-on image where the customer is wearing the exact wedding dress from the reference image.
+Generate only one final edited image.
+No text.
+No explanation.
+No labels.
+No watermark.
+No before/after.
+The final image must show the customer wearing the exact wedding dress from the reference image.
 `;
 }
 
